@@ -27,4 +27,13 @@ public class EventController {
         return eventService.saveEvent(event);
     }
 
+    @DeleteMapping(value = "/delete/{id}")
+    public ResponseEntity<String> deleteEvent (@PathVariable("id") Long id){
+        return eventService.deleteEvent(id);
+    }
+
+    @PutMapping(value="/update/{id}")
+    public ResponseEntity<String> updateEvent (@PathVariable("id") Long id, @RequestBody EventRequest event){
+        return eventService.updateEvent(id, event);
+    }
 }
