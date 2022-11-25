@@ -1,6 +1,9 @@
 package com.example.demo.category;
 
+import com.example.demo.events.Event;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="CATEGORIES")
@@ -11,6 +14,13 @@ public class Category {
     private String name;
     private String icon;
 
+    @OneToMany(
+            mappedBy = "category",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            orphanRemoval = true
+    )
+    private List<Event> events;
     public Category(){}
     public Category(String name, String icon) {
         this.name = name;

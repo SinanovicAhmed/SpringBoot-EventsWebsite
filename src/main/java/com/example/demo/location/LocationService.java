@@ -25,10 +25,10 @@ public class LocationService {
         Optional<Location> temp_loc = locationRepository.findLocationByName(location.getName());
 
         if(temp_loc.isPresent()){
-            return new ResponseEntity<>("Lokacija vec postoji!", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("Location already exists!", HttpStatus.FORBIDDEN);
         }else{
             locationRepository.save(location);
-            return new ResponseEntity<>("Lokacija uspjesno spremljena.", HttpStatus.OK);
+            return new ResponseEntity<>("Location saved", HttpStatus.OK);
         }
     }
     @Transactional
@@ -50,7 +50,7 @@ public class LocationService {
         if(temp_loc.isPresent()){
             return new ResponseEntity<>( locationRepository.findById(id), HttpStatus.OK);
         }{
-            return new ResponseEntity<>("Lokacija sa tim Id ne postoji", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("Location with that id doesnt exist", HttpStatus.FORBIDDEN);
         }
 
     }

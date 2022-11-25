@@ -1,12 +1,10 @@
 package com.example.demo.user;
-
 import com.example.demo.DAO.LoginDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
@@ -29,7 +27,7 @@ public class UserService {
         Optional<User> userEmail = userRepository.findUserByEmail(user.getEmail());
 
         if(userEmail.isPresent()){
-            return new ResponseEntity<>("email already exists", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("Email already exists", HttpStatus.FORBIDDEN);
         }else{
             userRepository.save(user);
             return new ResponseEntity<>("User saved to DB", HttpStatus.OK);

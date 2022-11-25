@@ -32,10 +32,10 @@ public class CategoryService {
     public ResponseEntity<String> addNewLocation(Category category) {
         Optional<Category> temp_cat = categoryRepository.findCategoryByName(category.getName());
         if(temp_cat.isPresent()){
-            return new ResponseEntity<>("Ta kategorija vec postoji", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("Category already exists", HttpStatus.FORBIDDEN);
         }
         categoryRepository.save(category);
-        return new ResponseEntity<>("Kategorija uspjesno spremljena", HttpStatus.ACCEPTED);
+        return new ResponseEntity<>("Category is saved", HttpStatus.ACCEPTED);
     }
     @Transactional
     public ResponseEntity<String> updateCategory(Long id, Category category) {

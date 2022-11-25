@@ -1,17 +1,26 @@
 package com.example.demo.location;
 
+import com.example.demo.events.Event;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="LOCATIONS")
 public class Location {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
     private String name;
     private String details;
     private String image_url;
-
+    @OneToMany(
+            mappedBy = "location",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            orphanRemoval = true
+    )
+    private List<Event> events;
     public Location() {
     }
 
@@ -21,11 +30,11 @@ public class Location {
         this.image_url = image_url;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
