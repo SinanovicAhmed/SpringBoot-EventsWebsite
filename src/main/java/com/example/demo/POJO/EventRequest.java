@@ -2,10 +2,19 @@ package com.example.demo.POJO;
 
 public class EventRequest {
     private String name;
+    private String description;
     private String date;
     private String image_url;
     private Long category_id;
     private Long location_id;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public String getName() {
         return name;

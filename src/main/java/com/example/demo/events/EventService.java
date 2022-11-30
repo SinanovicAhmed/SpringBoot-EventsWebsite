@@ -36,7 +36,7 @@ public class EventService {
         Optional<Location> location_optional = locationRepository.findById(event.getLocation_id());
         Location location = location_optional.get();
 
-        Event new_event = new Event(event.getName(),event.getDate(), event.getImage_url(), category, location);
+        Event new_event = new Event(event.getName(), event.getDescription(), event.getDate(), event.getImage_url(), category, location);
         eventRepository.save(new_event);
         return new ResponseEntity<>(event,HttpStatus.ACCEPTED);
 

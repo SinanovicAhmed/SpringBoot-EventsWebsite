@@ -2,10 +2,8 @@ package com.example.demo.events;
 
 import com.example.demo.category.Category;
 import com.example.demo.location.Location;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 
 
 @Entity
@@ -15,6 +13,7 @@ public class Event {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
+    private String description;
     private String date;
     private String image_url;
 
@@ -30,8 +29,9 @@ public class Event {
 
     public Event(){};
 
-    public Event(String name, String date, String image_url, Category category, Location location) {
+    public Event(String name, String description, String date, String image_url, Category category, Location location) {
         this.name = name;
+        this.description = description;
         this.date = date;
         this.image_url = image_url;
         this.category = category;
@@ -40,6 +40,14 @@ public class Event {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Category getCategory() {

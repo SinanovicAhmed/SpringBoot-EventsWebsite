@@ -17,20 +17,25 @@ public class CategoryController {
     }
 
     @Autowired
+    @CrossOrigin("*")
     @GetMapping
     public ResponseEntity<List<Category>> getCategories(){
         return categoryService.getLocations();
     }
+    @CrossOrigin("*")
     @GetMapping(value = "{id}")
     public ResponseEntity<?> getCategoryById(@PathVariable("id") Long id){
         return categoryService.getCategoryById(id);
     }
+
     @ResponseBody
+    @CrossOrigin("*")
     @PostMapping(value = "/save")
     public ResponseEntity<String> postCategory(@RequestBody Category category){
         return categoryService.addNewLocation(category);
     }
 
+    @CrossOrigin("*")
     @PutMapping(value = "/updateCategory/{id}")
     public ResponseEntity<String> updateCategory(@PathVariable("id") Long id,
                                                  @RequestBody Category category){
