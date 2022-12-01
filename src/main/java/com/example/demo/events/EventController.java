@@ -23,7 +23,11 @@ public class EventController {
     public ResponseEntity<List<Event>> getEvents(){
         return eventService.getEvents();
     }
-
+    @CrossOrigin("*")
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<?> getEvent(@PathVariable("id") Long id){
+        return eventService.getEventId(id);
+    }
     @CrossOrigin("*")
     @PostMapping(value = "/save")
     public ResponseEntity<?> saveEvents(@RequestBody EventRequest event){

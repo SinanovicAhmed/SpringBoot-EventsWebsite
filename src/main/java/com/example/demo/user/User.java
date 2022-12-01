@@ -1,6 +1,10 @@
 package com.example.demo.user;
 
+import com.example.demo.comments.Comment;
+import com.example.demo.events.Event;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="USERS")
@@ -14,6 +18,13 @@ public class User {
     private String password;
     private boolean banned;
 
+    @OneToMany(
+            mappedBy = "comment",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            orphanRemoval = true
+    )
+    private List<Comment> comments;
     public User(long id, String name, String surname, String email, String password, boolean banned) {
         this.id = id;
         this.name = name;

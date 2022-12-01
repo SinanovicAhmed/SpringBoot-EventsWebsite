@@ -65,9 +65,19 @@ public class EventService {
         event_temp.setLocation(location);
         event_temp.setName(event.getName());
         event_temp.setDate(event.getDate());
+        event_temp.setDescription(event.getDescription());
         event_temp.setImage_url(event.getImage_url());
         event_temp.setDate(event.getDate());
 
         return new ResponseEntity<>("Event is udpated", HttpStatus.OK);
+    }
+
+    public ResponseEntity<?> getEventId(Long id) {
+        Optional<Event> temp_event = eventRepository.findById(id);
+        if(temp_event.isPresent()){
+            return new ResponseEntity<>(temp_event, HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>("There is no event with that id", HttpStatus.FORBIDDEN);
+        }
     }
 }

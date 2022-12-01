@@ -1,9 +1,15 @@
 package com.example.demo.events;
 
 import com.example.demo.category.Category;
+import com.example.demo.comments.Comment;
 import com.example.demo.location.Location;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 @Entity
@@ -27,6 +33,14 @@ public class Event {
 
     private Location location;
 
+    @OneToMany(
+            mappedBy = "event",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER,
+            orphanRemoval = true
+    )
+    private List<Comment> comments;
+
     public Event(){};
 
     public Event(String name, String description, String date, String image_url, Category category, Location location) {
@@ -36,6 +50,14 @@ public class Event {
         this.image_url = image_url;
         this.category = category;
         this.location = location;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setEvent(List<Comment> comments) {
+        this.comments = comments;
     }
 
     public void setName(String name) {
