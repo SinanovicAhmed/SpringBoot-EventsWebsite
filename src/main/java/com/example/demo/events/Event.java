@@ -35,7 +35,7 @@ public class Event {
 
     @OneToMany(
             mappedBy = "event",
-            cascade = CascadeType.ALL,
+            cascade = CascadeType.REMOVE,
             fetch = FetchType.EAGER,
             orphanRemoval = true
     )
