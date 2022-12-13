@@ -1,10 +1,7 @@
 package com.example.demo.category;
-import com.example.demo.location.Location;
-import com.example.demo.location.LocationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController

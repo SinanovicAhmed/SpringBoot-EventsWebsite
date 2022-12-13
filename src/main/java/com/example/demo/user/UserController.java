@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping(path= "api/users")
 public class UserController {
     private final UserService userService;
@@ -34,15 +35,14 @@ public class UserController {
 
     @PutMapping(path = "/updatepassword/{userId}")
     public ResponseEntity<String> updateUserPassword(@PathVariable("userId") Long id,
-                                                     @RequestParam String password)
+                                                     @RequestBody String password)
     {
         return userService.updateUserPassword(id, password);
     }
     @PutMapping(path = "/updatebanned/{userId}")
-    public ResponseEntity<String> updateUserBanned(@PathVariable("userId") Long id,
-                                                     @RequestParam boolean banned)
+    public ResponseEntity<String> updateUserBanned(@PathVariable("userId") Long id)
     {
-        return userService.updateUserBanned(id, banned);
+        return userService.updateUserBanned(id);
     }
 
     @PostMapping(path = "/login")

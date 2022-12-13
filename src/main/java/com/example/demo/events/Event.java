@@ -1,13 +1,7 @@
 package com.example.demo.events;
-
 import com.example.demo.category.Category;
 import com.example.demo.comments.Comment;
 import com.example.demo.location.Location;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
 import javax.persistence.*;
 import java.util.List;
 

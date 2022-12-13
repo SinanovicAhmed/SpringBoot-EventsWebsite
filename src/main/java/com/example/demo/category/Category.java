@@ -1,7 +1,5 @@
 package com.example.demo.category;
-
 import com.example.demo.events.Event;
-
 import javax.persistence.*;
 import java.util.List;
 

@@ -39,7 +39,7 @@ public class UserService {
             return new ResponseEntity<>("User not found", HttpStatus.FORBIDDEN);
         }else{
             userRepository.deleteById(id);
-            return new ResponseEntity<>("User "+ id+ " succsesfully deleted!", HttpStatus.OK);
+            return new ResponseEntity<>("User " + id + " succsesfully deleted!", HttpStatus.OK);
         }
     }
     @Transactional
@@ -49,19 +49,19 @@ public class UserService {
             return new ResponseEntity<>("User doesnt exist!", HttpStatus.FORBIDDEN);
         }else{
             User user = userRepository.findById(id).orElseThrow(()-> new IllegalStateException());
-            user.setPassword(password.trim());
+            user.setPassword(password.trim().substring(1, password.length()-1));
             return new ResponseEntity<>("Users password has been updated!", HttpStatus.OK);
         }
     }
 
     @Transactional
-    public ResponseEntity<String> updateUserBanned(Long id, boolean banned) {
+    public ResponseEntity<String> updateUserBanned(Long id) {
 
         if(!userRepository.existsById(id)){
             return new ResponseEntity<>("User doesnt exist!", HttpStatus.FORBIDDEN);
         }else{
             User user = userRepository.findById(id).orElseThrow(()-> new IllegalStateException());
-            user.setBanned(banned);
+            user.setBanned(!user.isBanned()); // if banned unban if unbanned ban
             return new ResponseEntity<>("Users banned status has been updated!", HttpStatus.OK);
         }
     }

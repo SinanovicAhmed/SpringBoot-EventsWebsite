@@ -1,10 +1,7 @@
 package com.example.demo.category;
-
-import com.example.demo.location.Location;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
@@ -12,7 +9,6 @@ import java.util.Optional;
 @Service
 public class CategoryService {
     private final CategoryRepository categoryRepository;
-
     public CategoryService(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
     }
@@ -39,16 +35,14 @@ public class CategoryService {
     }
     @Transactional
     public ResponseEntity<String> updateCategory(Long id, Category category) {
-
         if(!categoryRepository.existsById(id)){
             return new ResponseEntity<>("Location doesnt exists", HttpStatus.FORBIDDEN);
-        }else{
-            Category temp_cat = categoryRepository.findById(id).orElseThrow(()-> new IllegalStateException());
-            temp_cat.setName(category.getName());
-            temp_cat.setIcon(category.getIcon());
-
-            return new ResponseEntity<>("Category has been updated", HttpStatus.OK);
         }
+        Category temp_cat = categoryRepository.findById(id).orElseThrow(()-> new IllegalStateException());
+        temp_cat.setName(category.getName());
+        temp_cat.setIcon(category.getIcon());
+        return new ResponseEntity<>("Category has been updated", HttpStatus.OK);
+
     }
 
 }

@@ -1,18 +1,13 @@
 package com.example.demo.comments;
-
 import com.example.demo.POJO.CommentRequest;
 import com.example.demo.events.Event;
 import com.example.demo.events.EventRepository;
 import com.example.demo.user.User;
 import com.example.demo.user.UserRepository;
-
-import org.springframework.format.datetime.DateFormatter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDate;
-
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
