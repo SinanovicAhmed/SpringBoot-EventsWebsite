@@ -69,7 +69,7 @@ public class UserService {
     public ResponseEntity<?> loginUser (LoginDAO login){
         User user = userRepository.findUserByEmail(login.getEmail())
                 .orElse(null);
-
+        //dummy login we could also not return user if his banned variable is true but for now that check is on frontend
         if(user!=null){
             if(user.getPassword().equals(login.getPassword())){
                 return new ResponseEntity<User>(user,HttpStatus.OK);
